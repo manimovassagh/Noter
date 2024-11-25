@@ -1,7 +1,4 @@
-
 using System.ComponentModel.DataAnnotations;
-using Microsoft.AspNetCore.Identity;
-
 
 namespace Noter.Models
 {
@@ -24,14 +21,10 @@ namespace Noter.Models
         [DataType(DataType.DateTime)]
         public DateTime CreatedAt { get; set; } = DateTime.Now;
 
-        [DataType(DataType.DateTime)]
-        public DateTime? CompletedAt { get; set; }
-        public int UserId { get; set; }
-        public IdentityUser? User { get; set; }
-        public string? GetUserName()
-        {
-            return User?.UserName;
-        }
-      
-        }
+        [Required]
+        public string UserId { get; set; } = string.Empty; // GUID of the user
+
+        [Required]
+        public string UserName { get; set; } = string.Empty; // User's username
+    }
 }
