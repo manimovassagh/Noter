@@ -99,6 +99,16 @@ namespace Noter.Controllers
             return RedirectToAction("Index");
         }
 
+        public IActionResult All()
+        {
+            
+            // Fetch todos for the current user
+            var todos = _context.TodoItems
+                .ToList();
+
+            return View(todos);
+        }
+        
         // Error handler
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

@@ -1,0 +1,25 @@
+﻿@model List<Noter.Models.TodoItem>
+
+
+<div class="mt-5">
+    <h2>Your Todos</h2>
+    <ul class="list-group">
+        @foreach (var todo in Model)
+        {
+        <li class="list-group-item">
+            <strong>@todo.Title</strong>
+            <p>@todo.Description</p>
+            <p>Created by: @todo.UserName</p>
+            <small>Created at: @todo.CreatedAt.ToString("g")</small>
+            @if (todo.IsCompleted)
+            {
+            <span class="badge bg-success">Completed</span>
+            }
+            else
+            {
+            <span class="badge bg-warning text-dark">Pending</span>
+            }
+        </li>
+        }
+    </ul>
+</div>
