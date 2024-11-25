@@ -11,7 +11,6 @@ namespace Noter.Data
         {
         }
 
-        // DbSet to manage TodoItem entities in the database
         public required DbSet<TodoItem> TodoItems { get; set; } 
     }
 }
