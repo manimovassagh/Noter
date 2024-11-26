@@ -42,11 +42,9 @@
     @await RenderSectionAsync("Scripts", required: false)
 
  <script>
-    // JavaScript to handle the button's state using localStorage
     document.addEventListener("DOMContentLoaded", () => {
         const button = document.getElementById("toggleButton");
 
-        // Check the current URL and set the button text accordingly
         if (window.location.pathname === '/Home/All') {
             button.innerText = "Go Back";
             localStorage.setItem("buttonState", "Go Back");
