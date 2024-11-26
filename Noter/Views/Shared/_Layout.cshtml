@@ -42,21 +42,27 @@
     @await RenderSectionAsync("Scripts", required: false)
 
     <script>
-        // JavaScript to toggle the button
-        function toggleButton() {
+        // JavaScript to handle the button's state using localStorage
+        document.addEventListener("DOMContentLoaded", () => {
             const button = document.getElementById("toggleButton");
-            const currentUrl = window.location.href;
 
-            if (button.innerText === "Go to All") {
-                // Navigate to the All page
-                window.location.href = '/Home/All';
-                button.innerText = "Go Back";
-            } else {
-                // Navigate back to the Index page
-                window.location.href = '/Home/Index';
-                button.innerText = "Go to All";
-            }
-        }
+            // Set button text based on localStorage
+            const buttonState = localStorage.getItem("buttonState") || "Go to All";
+            button.innerText = buttonState;
+
+            // Navigate to the correct page when the button is clicked
+            button.addEventListener("click", () => {
+                if (button.innerText === "Go to All") {
+                    // Navigate to the All page
+                    window.location.href = '/Home/All';
+                    localStorage.setItem("buttonState", "Go Back");
+                } else {
+                    // Navigate back to the Index page
+                    window.location.href = '/Home/Index';
+                    localStorage.setItem("buttonState", "Go to All");
+                }
+            });
+        });
     </script>
 </body>
 
