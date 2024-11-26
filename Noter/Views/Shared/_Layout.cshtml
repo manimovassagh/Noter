@@ -12,25 +12,25 @@
 </head>
 
 <body>
-<header>
-    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-        <div class="container-fluid">
-            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Note</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse"
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container-fluid">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Note</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse"
                     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
-            <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                <!-- Toggle Button -->
-                <button id="toggleButton" class="btn btn-primary" onclick="toggleButton()">Go to All</button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <!-- Toggle Button -->
+                    <button id="toggleButton" class="btn btn-primary" onclick="toggleButton()">Go to All</button>
 
-                <!-- Login Partial -->
-                <partial name="_LoginPartial"/>
+                    <!-- Login Partial -->
+                    <partial name="_LoginPartial" />
+                </div>
             </div>
-        </div>
-    </nav>
-</header>
+        </nav>
+    </header>
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
@@ -43,6 +43,9 @@
     @await RenderSectionAsync("Scripts", required: false)
 
     <script>
+        function goToTarget(path) {
+            window.location.href = path;
+        }
 
         document.addEventListener("DOMContentLoaded", () => {
             const button = document.getElementById("toggleButton");
@@ -60,10 +63,10 @@
 
             button.addEventListener("click", () => {
                 if (button.innerText === "Go to All") {
-                    window.location.href = '/Home/All';
+                    goToTarget('/Home/All')
                     localStorage.setItem("buttonState", "Go Back");
                 } else {
-                    window.location.href = '/Home/Index';
+                   goToTarget('/Home/Index')
                     localStorage.setItem("buttonState", "Go to All");
                 }
             });
