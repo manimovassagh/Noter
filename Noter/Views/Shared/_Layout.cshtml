@@ -43,7 +43,7 @@
     @await RenderSectionAsync("Scripts", required: false)
 
     <script>
-        
+
         function goToTarget(path) {
             window.location.href = path;
         }
@@ -67,7 +67,7 @@
                     goToTarget('/Home/All')
                     localStorage.setItem("buttonState", "Go Back");
                 } else {
-                   goToTarget('/Home/Index')
+                    goToTarget('/Home/Index')
                     localStorage.setItem("buttonState", "Go to All");
                 }
             });
