@@ -41,29 +41,38 @@
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 
-    <script>
-        // JavaScript to handle the button's state using localStorage
-        document.addEventListener("DOMContentLoaded", () => {
-            const button = document.getElementById("toggleButton");
+ <script>
+    // JavaScript to handle the button's state using localStorage
+    document.addEventListener("DOMContentLoaded", () => {
+        const button = document.getElementById("toggleButton");
 
-            // Set button text based on localStorage
+        // Check the current URL and set the button text accordingly
+        if (window.location.pathname === '/Home/All') {
+            button.innerText = "Go Back";
+            localStorage.setItem("buttonState", "Go Back");
+        } else if (window.location.pathname === '/Home/Index' || window.location.pathname === '/') {
+            button.innerText = "Go to All";
+            localStorage.setItem("buttonState", "Go to All");
+        } else {
+            // Fallback to localStorage if on an unexpected route
             const buttonState = localStorage.getItem("buttonState") || "Go to All";
             button.innerText = buttonState;
+        }
 
-            // Navigate to the correct page when the button is clicked
-            button.addEventListener("click", () => {
-                if (button.innerText === "Go to All") {
-                    // Navigate to the All page
-                    window.location.href = '/Home/All';
-                    localStorage.setItem("buttonState", "Go Back");
-                } else {
-                    // Navigate back to the Index page
-                    window.location.href = '/Home/Index';
-                    localStorage.setItem("buttonState", "Go to All");
-                }
-            });
+        // Handle button click to navigate and update state
+        button.addEventListener("click", () => {
+            if (button.innerText === "Go to All") {
+                // Navigate to the All page
+                window.location.href = '/Home/All';
+                localStorage.setItem("buttonState", "Go Back");
+            } else {
+                // Navigate back to the Index page
+                window.location.href = '/Home/Index';
+                localStorage.setItem("buttonState", "Go to All");
+            }
         });
-    </script>
+    });
+</script>
 </body>
 
 </html>
