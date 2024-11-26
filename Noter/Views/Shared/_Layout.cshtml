@@ -20,6 +20,7 @@
                     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
+
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <!-- Toggle Button -->
                     <button id="toggleButton" class="btn btn-primary" onclick="toggleButton()">Go to All</button>
@@ -41,33 +42,33 @@
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 
- <script>
-    
-    document.addEventListener("DOMContentLoaded", () => {
-        const button = document.getElementById("toggleButton");
+    <script>
 
-        if (window.location.pathname === '/Home/All') {
-            button.innerText = "Go Back";
-            localStorage.setItem("buttonState", "Go Back");
-        } else if (window.location.pathname === '/Home/Index' || window.location.pathname === '/') {
-            button.innerText = "Go to All";
-            localStorage.setItem("buttonState", "Go to All");
-        } else {
-            const buttonState = localStorage.getItem("buttonState") || "Go to All";
-            button.innerText = buttonState;
-        }
+        document.addEventListener("DOMContentLoaded", () => {
+            const button = document.getElementById("toggleButton");
 
-        button.addEventListener("click", () => {
-            if (button.innerText === "Go to All") {
-                window.location.href = '/Home/All';
+            if (window.location.pathname === '/Home/All') {
+                button.innerText = "Go Back";
                 localStorage.setItem("buttonState", "Go Back");
-            } else {
-                window.location.href = '/Home/Index';
+            } else if (window.location.pathname === '/Home/Index' || window.location.pathname === '/') {
+                button.innerText = "Go to All";
                 localStorage.setItem("buttonState", "Go to All");
+            } else {
+                const buttonState = localStorage.getItem("buttonState") || "Go to All";
+                button.innerText = buttonState;
             }
+
+            button.addEventListener("click", () => {
+                if (button.innerText === "Go to All") {
+                    window.location.href = '/Home/All';
+                    localStorage.setItem("buttonState", "Go Back");
+                } else {
+                    window.location.href = '/Home/Index';
+                    localStorage.setItem("buttonState", "Go to All");
+                }
+            });
         });
-    });
-</script>
+    </script>
 </body>
 
 </html>
