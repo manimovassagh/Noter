@@ -4,13 +4,8 @@ using Noter.Models;
 
 namespace Noter.Data
 {
-    public class ApplicationDbContext : IdentityDbContext
+    public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : IdentityDbContext(options)
     {
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
-            : base(options)
-        {
-        }
-
         public required DbSet<TodoItem> TodoItems { get; set; } 
     }
 }
