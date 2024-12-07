@@ -60,6 +60,7 @@
                 const buttonState = localStorage.getItem("buttonState") || "Go to All";
                 button.innerText = buttonState;
             }
+            
             button.addEventListener("click", () => {
                 if (button.innerText === "Go to All") {
                     goToTarget('/Home/All')
